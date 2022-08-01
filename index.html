@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Swolekat's Bonk</title>
+    <style>
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        body {
+            position: relative;
+        }
+
+        .bonk {
+            position: absolute;
+            bottom: 50%;
+            left: 0;
+            transition: all 1000ms;
+            transform: rotate(0deg);
+            transform-origin: 100% 100%;
+            display: block;
+            height: 50%;
+        }
+
+        .bonk.animate {
+            transform: rotate(-45deg);
+        }
+
+        .bonkee {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 50%;
+            width: 50%;
+            object-position: left;
+            transition: all 1000ms;
+        }
+
+        .bonkee.animate {
+            height: 15%;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="https://cdn.7tv.app/pp/622e40a2af1b8e166ce430d2/4c636c8ee14e4e4796e73050789f25ff" class="bonkee" id="bonkee" />
+    <img src="./assets/bonkBat.png" class="bonk" id="bat" />
+    <audio src="./assets/bonk.mp3" id="sound" />
+
+    <script>
+        const bonkee = document.getElementById('bonkee');
+        const queryParams = new URLSearchParams(window.location.search);
+        const img = queryParams.get("img");
+        bonkee.src = img;
+
+        setTimeout(() => {
+            const bat = document.getElementById('bat');
+            const sound = document.getElementById('sound');
+
+            bat.className = `${bat.className} animate`;
+            sound.play();
+            setTimeout(() => {
+                bonkee.className = `${bonkee.className} animate`;
+            }, 500);
+        }, 1000);
+
+    </script>
+</body>
+</html>
